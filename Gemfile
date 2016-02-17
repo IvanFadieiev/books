@@ -62,3 +62,5 @@ group :development do
   gem 'spring'
 end
 
+#add pictures
+gem "paperclip", "~> 4.3"

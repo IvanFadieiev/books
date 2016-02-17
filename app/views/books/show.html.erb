@@ -1,21 +1,17 @@
  <div class="book-email"><%= @book.user.email %></div>
+    <%= image_tag @book.preview.url(:large)%>
     <h3><%= @book.title %></h3>
     <p><%= @book.author %></p>
     <p><%= @book.body %></p>
-
-
-
     <% if @book.draft == true%>
       <div class="book-check_box">DRAFT</div>
     <% end %>
-
     <%= form_for @book do |f| %>
       <div >
         <%= f.check_box :draft %>
         <%= f.submit 'Draft' %>
       </div>
     <% end %>
-
     <% if can? :manage, @book %>
       <div>
         <%= link_to 'Edit', edit_book_path(@book) %>
