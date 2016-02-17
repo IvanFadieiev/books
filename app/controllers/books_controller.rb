@@ -42,6 +42,10 @@ class BooksController < ApplicationController
     redirect_to root_path
   end
 
+  def last_books
+    @books = Book.where("created_at > ?", 7.days.ago)
+  end
+
   private
 
   def set_book

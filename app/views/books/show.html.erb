@@ -3,6 +3,7 @@
     <h3><%= @book.title %></h3>
     <p><%= @book.author %></p>
     <p><%= @book.body %></p>
+    <%= @book.created_at%>
     <% if @book.draft == true%>
       <div class="book-check_box">DRAFT</div>
     <% end %>
