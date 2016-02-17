@@ -11,10 +11,17 @@
           </ul>
         </div>
       <% end %>
+
       <div class="field">
         <%= f.label "Preview" %><br />
         <%= f.file_field :preview %>
       </div>
+
+      <% Category.all.each do |c| %>
+        <%= check_box_tag "category_ids[]", c.id, f.object.category_ids.include?(c.id) %>
+        <%= c.name %>
+        <br>
+      <% end %>
 
       <div class="field">
         <%= f.label :title %><br />
@@ -31,10 +38,10 @@
         <%= f.text_area :body %>
       </div>
 
-<!--       <div class="field">
+      <div class="field">
         <%= f.label :draft %><br />
         <%= f.check_box :draft %>
-      </div> -->
+      </div>
 
       <div class="actions">
         <%= f.submit 'Submit' %>

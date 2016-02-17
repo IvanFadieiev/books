@@ -1,0 +1,15 @@
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+<t>
+  <% @category.books.each do |cb| %>
+    <div class="book-item">
+      <% @book = (Book.find_by_id(cb.id)) %>
+      <%= render template: "books/show"%>
+    </div>
+  <%end%><br>
+</t>
+<br>
+<br>
+<%= link_to 'Back', :root %>

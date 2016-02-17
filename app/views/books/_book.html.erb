@@ -25,7 +25,7 @@
       <div class="book-email"><%= book.user.email %></div>
       <div class="book-title"><h3><%= book.title %></h3></div>
       <div class="book-author"><%= book.author%></div>
-      <div class="book-body"><%= truncate(book.body, length: 150) %></div>
+      <div class="book-body"><%= truncate(book.body, length: 30) %></div>
       <% if book.draft == true%>
         <div class="book-check_box" style="color: red;">DRAFT</div>
       <% end %>

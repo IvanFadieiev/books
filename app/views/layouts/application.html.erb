@@ -10,12 +10,17 @@
     <div class="row nav">
       <div class="col-ms-8 col-md-offset-2">
         <% if user_signed_in? %>
-          <%= link_to "last", last_books_path%>
-          <%= link_to "new", new_book_path %>
-          <%= link_to "index", books_path%>
+          <%= link_to "Books last week", last_books_path%>
+          <%= link_to "All Books", books_path%>
+          <%= link_to "New Book", new_book_path %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete%><br />
           <%= current_user.email%>
-          <%= Date.today %>
+          <%= Date.today %><br>
+          <div class="category">
+            <% Category.all.each do |c| %>
+              <%= link_to "#{c.name}", category_path(c) %>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>

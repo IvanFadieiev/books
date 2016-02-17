@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217144256) do
+ActiveRecord::Schema.define(version: 20160217171624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 20160217144256) do
     t.string   "preview_content_type"
     t.integer  "preview_file_size"
     t.datetime "preview_updated_at"
+  end
+
+  create_table "books_categories", id: false, force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "book_id"
+  end
+
+  add_index "books_categories", ["book_id", "category_id"], name: "index_books_categories_on_book_id_and_category_id", unique: true, using: :btree
+  add_index "books_categories", ["category_id", "book_id"], name: "index_books_categories_on_category_id_and_book_id", unique: true, using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

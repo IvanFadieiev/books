@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  rescue_from ActiveRecord::RecordNotUnique, with: :record_not_uniq
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
   end
@@ -22,6 +23,7 @@ class BooksController < ApplicationController
 
   def create
     @book = current_user.books.build(book_params)
+    @book.categories << Category.find(params[:category_ids]) if params[:category_ids]
     if @book.save
       redirect_to @book
     else
@@ -30,6 +32,7 @@ class BooksController < ApplicationController
   end
 
   def update
+    @book.categories = Category.find(params[:category_ids]) if params[:category_ids]
     if @book.update_attributes(book_params)
       redirect_to @book
     else
@@ -47,6 +50,10 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def record_not_uniq
+    redirect_to :back, notice: "Record not unique"
+  end
 
   def set_book
     @book = Book.find_by(id: params[:id])
