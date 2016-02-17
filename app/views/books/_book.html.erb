@@ -1,0 +1,22 @@
+<div class="book-item">
+  <div class="book-content">
+     <div class="book-email"><%= book.user.email %></div>
+    <div class="book-title"><%= book.title %></div>
+    <div class="book-author"><%= book.author%></div>
+    <div class="book-body"><%= truncate(book.body, length: 150) %></div>
+
+    <% if book.draft == true%>
+      <div class="book-check_box">DRAFT</div>
+    <% end %>
+
+
+
+    <div class="book-links">
+      <%= link_to 'Show', book_path(book) %>
+      <% if can? :manage, book %>
+        <%= link_to 'Edit', edit_book_path(book) %>
+        <%= link_to 'Delete', book_path(book), method: :delete %>
+      <% end %>
+    </div>
+  </div>
+</div>
