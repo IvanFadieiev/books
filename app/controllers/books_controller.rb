@@ -2,12 +2,18 @@ class BooksController < ApplicationController
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
   end
-  load_and_authorize_resource except: [:create]
+  load_and_authorize_resource except: [:create, :update]
   skip_authorize_resource only: [:index, :show, :new]
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def index
     @books = Book.all
+  end
+
+  def show
+    if params[:draft]
+      @book.update_attributes(params[:draft])
+    end
   end
 
   def new

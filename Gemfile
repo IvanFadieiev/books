@@ -44,8 +44,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-    # Automatic Ruby code style checking tool
-  gem 'rubocop', require: false
+  # Automatic Ruby code style checking tool
+  gem 'rubocop', '0.36.0'
 
   # An IRB alternative and runtime developer console
   gem 'pry', '0.10.3'
