@@ -1,3 +1,4 @@
+# books controller
 class BooksController < ApplicationController
   rescue_from ActiveRecord::RecordNotUnique, with: :record_not_uniq
   rescue_from CanCan::AccessDenied do |exception|

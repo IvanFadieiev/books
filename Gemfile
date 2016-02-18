@@ -64,3 +64,6 @@ end
 
 #add pictures
 gem "paperclip", "~> 4.3"
+
+#add admin panel
+gem 'rails_admin'
