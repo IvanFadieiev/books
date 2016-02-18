@@ -1,15 +1,15 @@
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<h1><%= @category.name %></h1>
 <t>
   <% @category.books.each do |cb| %>
     <div class="book-item">
       <% @book = (Book.find_by_id(cb.id)) %>
-      <%= render template: "books/show"%>
+      <% if @book.draft == false %>
+        <%= render template: "books/show"%>
+      <% elsif @book.draft && current_user.id == @book.user.id %>
+        <%= render template: "books/show"%>
+      <% end %>
     </div>
   <%end%><br>
 </t>
 <br>
 <br>
-<%= link_to 'Back', :root %>

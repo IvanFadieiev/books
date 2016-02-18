@@ -1,41 +1,5 @@
 <% if book.draft == false %>
-  <div class="book-item">
-    <div class="book-content">
-      <div class="book-preview"><%= image_tag book.preview.url(:medium)%></div>
-      <div class="book-email"><%= book.user.email %></div>
-      <div class="book-title"><h3><%= book.title %></h3></div>
-      <div class="book-author"><%= book.author%></div>
-      <div class="book-body"><%= truncate(book.body, length: 30) %></div>
-      <% if book.draft == true%>
-        <div class="book-check_box" style="color: red;">DRAFT</div>
-      <% end %>
-      <div class="book-links">
-        <%= link_to 'Show', book_path(book) %>
-        <% if can? :manage, book %>
-          <%= link_to 'Edit', edit_book_path(book) %>
-          <%= link_to 'Delete', book_path(book), method: :delete %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <% elsif book.draft == true && current_user.id == book.user.id %>
-    <div class="book-item">
-    <div class="book-content">
-      <div class="book-preview"><%= image_tag book.preview.url(:medium)%></div>
-      <div class="book-email"><%= book.user.email %></div>
-      <div class="book-title"><h3><%= book.title %></h3></div>
-      <div class="book-author"><%= book.author%></div>
-      <div class="book-body"><%= truncate(book.body, length: 30) %></div>
-      <% if book.draft == true%>
-        <div class="book-check_box" style="color: red;">DRAFT</div>
-      <% end %>
-      <div class="book-links">
-        <%= link_to 'Show', book_path(book) %>
-        <% if can? :manage, book %>
-          <%= link_to 'Edit', edit_book_path(book) %>
-          <%= link_to 'Delete', book_path(book), method: :delete %>
-        <% end %>
-      </div>
-    </div>
-  </div>
+  <%= render partial: "book_list", locals: { book: book } %>
+<% elsif book.draft && current_user.id == book.user.id %>
+  <%= render partial: "book_list", locals: { book: book } %>
 <% end %>

@@ -13,9 +13,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    if params[:draft]
-      @book.update_attributes(params[:draft])
-    end
+    @book.update_attributes(params[:draft]) if params[:draft]
   end
 
   def new
