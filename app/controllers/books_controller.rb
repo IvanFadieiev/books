@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   load_and_authorize_resource except: [:create, :update]
   skip_authorize_resource only: [:index, :show, :new]
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :draft_book, only: [:show]
 
   def index
     @books = Book.all
@@ -49,6 +50,10 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def draft_book
+    redirect_to :root if @book.draft && (current_user.id != @book.user_id)
+  end
 
   def record_not_uniq
     redirect_to :back, notice: "Record not unique"

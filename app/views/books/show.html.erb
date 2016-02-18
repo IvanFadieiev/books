@@ -9,7 +9,7 @@
 <%= form_for @book do |f| %>
   <div >
     <%= f.check_box :draft %>
-    <%= f.submit 'Draft' %>
+    <%= f.submit 'Draft', class: "draft" %>
   </div>
 <% end %>
 <% if can? :manage, @book %>

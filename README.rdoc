@@ -11,5 +11,5 @@ This is my test application for Sloboda Studio:
 
 
 admin login:
-  email: <tt>admin@admin.com</tt>
-  password: <tt>password</tt>
+  email: admin@admin.com
+  password: password
