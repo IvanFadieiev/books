@@ -7,23 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
   <body>
-    <div class="row nav">
-      <div class="col-ms-8 col-md-offset-2">
-        <% if user_signed_in? %>
+    <% if user_signed_in? %>
+      <div class="row nav">
+        <div class="col-ms-8 col-md-offset-2">
           <%= link_to "Books last week", last_books_path%>
           <%= link_to "All Books", books_path%>
           <%= link_to "New Book", new_book_path %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete%><br />
           <%= current_user.email%>
-          <%= Date.today %><br>
+          <%= Date.today %>
+        </div>
+        <div class="col-md-2">
           <div class="category">
-            <% Category.all.each do |c| %>
-              <%= link_to "#{c.name}", category_path(c) %>
-            <% end %>
+            <ul>
+              <% Category.all.each do |c| %>
+                <li>
+                  <%= link_to "#{c.name}", category_path(c) %>
+                </li>
+              <% end %>
+            </ul>
           </div>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <%if notice%>
       <div class="row">
         <div class="col-ms-8 col-md-offset-2">
@@ -33,7 +39,7 @@
       </div>
     <% end %>
     <div class="row">
-      <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-9 col-md-offset-2">
         <%= yield %>
       </div>
     </div>

@@ -25,7 +25,7 @@ class BooksController < ApplicationController
     @book = current_user.books.build(book_params)
     @book.categories << Category.find(params[:category_ids]) if params[:category_ids]
     if @book.save
-      redirect_to @book
+      redirect_to @book, notice: 'Book was successfully created!'
     else
       render :new
     end

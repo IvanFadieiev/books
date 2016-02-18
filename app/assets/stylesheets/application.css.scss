@@ -43,12 +43,12 @@
   }
 }
 .notice {
-  width: 450px;
-  border: 2px solid #cce5ff;
+  width: 100%;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #F0FFF0;
+  color: #006400;
 }
 .row.nav{
   border: 2px solid #cce5ff;
@@ -56,4 +56,26 @@
   padding-bottom: 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+}
+.col-md-2 {
+  position: fixed;
+  list-style: none;
+  padding-top: 20px;
+  top: 0;
+  left: 0;
+  background-color: #f0f0f0;
+  border: 2px solid #cce5ff;
+  height: 100%;
+  width: auto;
+  ul li{
+    list-style-type: none;
+    left: 20px;
+    padding: 10px;
+  }
+}
+input, textarea{
+  width: 60%;
+}
+input#category_ids_, #book_draft, #edit_book_86 > div:nth-child(4) > input:nth-child(3), #edit_book_102 > div:nth-child(4) > input:nth-child(3),#user_remember_me{
+  width: 5%;
 }
